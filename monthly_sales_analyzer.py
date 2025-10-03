@@ -19,32 +19,63 @@ sales_data = [
     {"day": 17, "product_a": 188, "product_b": 109, "product_c": 163},
     {"day": 18, "product_a": 108, "product_b": 139, "product_c": 202},
     {"day": 19, "product_a": 229, "product_b": 133, "product_c": 241},
-    {"day": 20, "product_a": 210, "product_b": 57, "product_c": 324}
-]
+    {"day": 20, "product_a": 210, "product_b": 57, "product_c": 324}]
+
 
 def total_sales_by_product(data, product_key):
     """Calculates the total sales of a specific product in 30 days."""
-    pass
+    total=0
+    for values in data:
+        total += values[product_key]
+    return total
+          
+         
 
 
 def average_daily_sales(data, product_key):
     """Calculates the average daily sales of a specific product."""
-    pass
+    total = 0
+    for values in data :
+        total += values[product_key]
+    promedio = total /len(data)
+    return promedio
+    
 
 
 def best_selling_day(data):
     """Finds the day with the highest total sales."""
-    pass
+    max_sales = 0
+    best_day = None
+    for values in data:
+        total_sales = values["product_a"] + values["product_b"] + values["product_c"]
+        if total_sales > max_sales:
+            max_sales = total_sales
+            best_day = values["day"]
+    return best_day
+         
+
 
 
 def days_above_threshold(data, product_key, threshold):
     """Counts how many days the sales of a product exceeded a given threshold."""
-    pass
-
+    Product_exc = 0
+    for values in data:
+        if values[product_key] > threshold:
+         Product_exc += 1
+    return Product_exc
+    
 
 def top_product(data):
     """Determines which product had the highest total sales in 30 days."""
-    pass
+    total_1 = {"product_a": 0, "product_b": 0, "product_c": 0}
+    for product in data:
+        total_1["product_a"] += product["product_a"]
+        total_1["product_b"] += product["product_b"]
+        total_1["product_c"] += product["product_c"]
+    top_product = max(total_1, key=total_1.get)
+    return top_product  
+
+    
 
 
 
